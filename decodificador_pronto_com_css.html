@@ -1,0 +1,90 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html> <!-- Abre a tag do elemento HTML -->
+  <head> <!-- Abre a tag do elemento head -->
+    <meta charset="utf-8"> <!-- Define o conjunto de caracteres como UTF-8 -->
+    <title>Criptografia de texto</title> <!-- Define o título da página -->
+    <link rel="stylesheet" href="style.css"> <!-- Link para um arquivo externo de estilo CSS -->
+  </head> <!-- Fecha a tag do elemento head -->
+  <body> <!-- Abre a tag do elemento body -->
+    <div class="container"> <!-- Abre a tag do elemento div com a classe "container" -->
+      <img src="10.png" alt="Imagem 1"> <!-- Adiciona uma imagem com o caminho "10.png" e a descrição "Imagem 1" -->
+      <h1>Criptografar e descriptografar texto</h1> <!-- Adiciona um título h1 com o texto "Criptografar e descriptografar texto" -->
+      <label for="texto">Digite o texto:</label> <!-- Adiciona uma label com o texto "Digite o texto:" e o atributo "for" definido como "texto" -->
+      <input type="text" id="texto"> <!-- Adiciona um input do tipo texto com o id "texto" -->
+      <br><br> <!-- Adiciona duas quebras de linha -->
+      <button onclick="criptografar()">Criptografar</button> <!-- Adiciona um botão que chama a função "criptografar()" quando clicado -->
+      <button onclick="descriptografar()">Descriptografar</button> <!-- Adiciona um botão que chama a função "descriptografar()" quando clicado -->
+      <br><br> <!-- Adiciona duas quebras de linha -->
+      <label for="resultado">Resultado:</label> <!-- Adiciona uma label com o texto "Resultado:" e o atributo "for" definido como "resultado" -->
+      <textarea id="resultado"></textarea> <!-- Adiciona uma textarea com o id "resultado" -->
+      <br><br> <!-- Adiciona duas quebras de linha -->
+      <button onclick="copiarTexto()">Copiar resultado</button> <!-- Adiciona um botão que chama a função "copiarTexto()" quando clicado -->
+    </div> <!-- Fecha a tag do elemento div -->
+ 
+    <script>
+        // Definindo a função criptografar
+      function criptografar() {
+       
+          // Obtém o texto digitado pelo usuário e remove todas as letras maiúsculas
+      const texto = document.getElementById("texto").value.replace(/[A-Z]/g, "").toLowerCase();
+
+        // Verifica se o texto possui apenas letras minúsculas
+        if (!/^[a-z ]+$/.test(texto)) {
+         
+          // Se não possuir apenas letras minúsculas, exibe uma mensagem de erro e encerra a função
+          alert("Por favor, digite apenas letras minúsculas sem acentos ou caracteres especiais.");
+          return;
+        }
+
+        // Aplica as substituições para criptografar o texto
+      const textoCriptografado = texto
+          .replace(/e/g, "enter")
+          .replace(/i/g, "imes")
+          .replace(/a/g, "ai")
+          .replace(/o/g, "ober")
+          .replace(/u/g, "ufat");
+
+        // Exibe o texto criptografado no campo de resultado
+        document.getElementById("resultado").value = textoCriptografado;
+      }
+
+
+      function descriptografar() {
+        const textoCriptografado = document.getElementById("texto").value.replace(/[A-Z]/g, "").toLowerCase();
+
+        // verifica se o texto possui apenas letras minúsculas
+        if (!/^[a-z ]+$/.test(textoCriptografado)) {
+          alert("Por favor, digite apenas letras minúsculas sem acentos ou caracteres especiais.");
+          return;
+        }
+
+        // aplica as substituições inversas para descriptografar o texto
+        const textoDescriptografado = textoCriptografado
+          .replace(/enter/g, "e")
+          .replace(/imes/g, "i")
+          .replace(/ai/g, "a")
+          .replace(/ober/g, "o")
+          .replace(/ufat/g, "u");
+
+        document.getElementById("resultado").value = textoDescriptografado;
+      }
+
+      // Definindo a função copiarTexto
+      function copiarTexto() {
+      
+        // Obtém o elemento textarea que contém o texto criptografado
+        const resultado = document.getElementById("resultado");
+
+        // Seleciona todo o conteúdo do elemento textarea
+        resultado.select();
+
+        // Executa o comando "copy" para copiar o conteúdo selecionado para a área de transferência
+        document.execCommand("copy");
+
+        // Exibe uma mensagem informando que o texto foi copiado para a área de transferência
+        alert("Texto copiado para a área de transferência");
+      }
+
+    </script>
+  </body>
+</html>
